@@ -1,0 +1,434 @@
+EESchema Schematic File Version 2  date Sat 04 Oct 2014 11:38:36 PM ART
+LIBS:power
+LIBS:device
+LIBS:transistors
+LIBS:conn
+LIBS:linear
+LIBS:regul
+LIBS:74xx
+LIBS:cmos4000
+LIBS:adc-dac
+LIBS:memory
+LIBS:xilinx
+LIBS:special
+LIBS:microcontrollers
+LIBS:dsp
+LIBS:microchip
+LIBS:analog_switches
+LIBS:motorola
+LIBS:texas
+LIBS:intel
+LIBS:audio
+LIBS:interface
+LIBS:digital-audio
+LIBS:philips
+LIBS:display
+LIBS:cypress
+LIBS:siliconi
+LIBS:opto
+LIBS:atmel
+LIBS:contrib
+LIBS:valves
+LIBS:w_device
+LIBS:labo-cache
+EELAYER 25  0
+EELAYER END
+$Descr A4 11700 8267
+encoding utf-8
+Sheet 1 1
+Title ""
+Date "5 oct 2014"
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L CONN_1 V-1
+U 1 1 54309FA5
+P 2700 3450
+F 0 "V-1" V 2780 3450 40  0000 L CNN
+F 1 "CONN_1" H 2700 3505 30  0001 C CNN
+	1    2700 3450
+	0    -1   -1   0   
+$EndComp
+$Comp
+L CONN_1 V+1
+U 1 1 54309F87
+P 2700 3150
+F 0 "V+1" V 2780 3150 40  0000 L CNN
+F 1 "CONN_1" H 2700 3205 30  0001 C CNN
+	1    2700 3150
+	0    -1   -1   0   
+$EndComp
+Connection ~ 5200 4500
+Wire Wire Line
+	5200 3100 5200 4500
+Wire Wire Line
+	6650 3400 6650 3000
+Wire Wire Line
+	6650 3000 6100 3000
+Connection ~ 6100 4500
+Wire Wire Line
+	6100 4650 6100 4300
+Wire Wire Line
+	5100 4000 5100 3100
+Wire Wire Line
+	5300 2400 6000 2400
+Wire Wire Line
+	6000 2400 6000 2000
+Wire Wire Line
+	5100 2400 5100 2300
+Wire Wire Line
+	5100 2300 5500 2300
+Wire Wire Line
+	5500 2300 5500 2000
+Wire Wire Line
+	4900 2400 4900 2200
+Wire Wire Line
+	4900 2200 5050 2200
+Wire Wire Line
+	5050 2200 5050 2000
+Wire Wire Line
+	4700 2400 4700 2200
+Wire Wire Line
+	4700 2200 4550 2200
+Wire Wire Line
+	4550 2200 4550 2000
+Wire Wire Line
+	4500 2400 4250 2400
+Wire Wire Line
+	4250 2400 4250 2150
+Wire Wire Line
+	4250 2150 4050 2150
+Wire Wire Line
+	4050 2150 4050 2000
+Connection ~ 5500 1600
+Connection ~ 5050 1600
+Connection ~ 4550 1600
+Connection ~ 4050 1600
+Wire Wire Line
+	3600 2400 3600 1600
+Wire Wire Line
+	3600 2400 3800 2400
+Wire Wire Line
+	3800 2400 3800 3300
+Wire Wire Line
+	5300 3100 5650 3100
+Wire Wire Line
+	5650 3100 5650 3800
+Connection ~ 4000 3300
+Wire Wire Line
+	3800 3300 4700 3300
+Wire Wire Line
+	4500 3200 4050 3200
+Wire Wire Line
+	4500 3200 4500 3100
+Wire Wire Line
+	4600 3100 4600 3450
+Wire Wire Line
+	4000 3300 4000 3500
+Wire Wire Line
+	3400 3600 3400 3650
+Wire Wire Line
+	2700 3300 3000 3300
+Wire Wire Line
+	2700 3600 2700 3800
+Wire Wire Line
+	4000 3900 4000 4050
+Wire Wire Line
+	4800 3100 4800 3450
+Wire Wire Line
+	4700 3100 4700 3800
+Wire Wire Line
+	4700 3800 5050 3800
+Connection ~ 4700 3300
+Wire Wire Line
+	4050 3200 4050 2250
+Wire Wire Line
+	4050 2250 3800 2250
+Wire Wire Line
+	3800 2250 3800 2000
+Connection ~ 3800 1600
+Connection ~ 4300 1600
+Connection ~ 4800 1600
+Connection ~ 5250 1600
+Wire Wire Line
+	3600 1600 6000 1600
+Connection ~ 5750 1600
+Wire Wire Line
+	4300 2000 4300 2100
+Wire Wire Line
+	4300 2100 4400 2100
+Wire Wire Line
+	4400 2100 4400 2300
+Wire Wire Line
+	4400 2300 4600 2300
+Wire Wire Line
+	4600 2300 4600 2400
+Wire Wire Line
+	4800 2000 4800 2400
+Wire Wire Line
+	5250 2000 5250 2250
+Wire Wire Line
+	5250 2250 5000 2250
+Wire Wire Line
+	5000 2250 5000 2400
+Wire Wire Line
+	5750 2000 5750 2350
+Wire Wire Line
+	5750 2350 5200 2350
+Wire Wire Line
+	5200 2350 5200 2400
+Wire Wire Line
+	5100 3100 5000 3100
+Wire Wire Line
+	5100 4500 5400 4500
+Wire Wire Line
+	6100 3800 6100 3500
+Wire Wire Line
+	5900 4500 6650 4500
+Wire Wire Line
+	6650 4500 6650 3900
+Wire Wire Line
+	4900 3100 4900 3650
+Wire Wire Line
+	4900 3650 6100 3650
+Connection ~ 6100 3650
+$Comp
+L GND #PWR6
+U 1 1 543088EC
+P 6100 4650
+F 0 "#PWR6" H 6100 4650 30  0001 C CNN
+F 1 "GND" H 6100 4580 30  0001 C CNN
+	1    6100 4650
+	1    0    0    -1  
+$EndComp
+$Comp
+L RVAR R2
+U 1 1 54308872
+P 5650 4500
+F 0 "R2" V 5730 4450 50  0000 C CNN
+F 1 "5.1 K" V 5570 4560 50  0000 C CNN
+	1    5650 4500
+	0    1    1    0   
+$EndComp
+$Comp
+L R R3
+U 1 1 543087F4
+P 6100 3250
+F 0 "R3" V 6180 3250 50  0000 C CNN
+F 1 "68 K" V 6100 3250 50  0000 C CNN
+	1    6100 3250
+	1    0    0    -1  
+$EndComp
+$Comp
+L R R4
+U 1 1 543087ED
+P 6100 4050
+F 0 "R4" V 6180 4050 50  0000 C CNN
+F 1 "22 k" V 6100 4050 50  0000 C CNN
+	1    6100 4050
+	1    0    0    -1  
+$EndComp
+$Comp
+L R R1
+U 1 1 543087DB
+P 5100 4250
+F 0 "R1" V 5180 4250 50  0000 C CNN
+F 1 "1.5k" V 5100 4250 50  0000 C CNN
+	1    5100 4250
+	1    0    0    -1  
+$EndComp
+$Comp
+L LED D6
+U 1 1 5430600B
+P 5050 1800
+F 0 "D6" H 5050 1900 50  0000 C CNN
+F 1 "LED" H 5050 1700 50  0000 C CNN
+	1    5050 1800
+	0    1    1    0   
+$EndComp
+$Comp
+L CONN_1 P-1
+U 1 1 543085FD
+P 6800 3900
+F 0 "P-1" H 6880 3900 40  0000 L CNN
+F 1 "CONN_1" H 6800 3955 30  0001 C CNN
+	1    6800 3900
+	1    0    0    -1  
+$EndComp
+$Comp
+L CONN_1 P+1
+U 1 1 543085F7
+P 6800 3400
+F 0 "P+1" H 6880 3400 40  0000 L CNN
+F 1 "CONN_1" H 6800 3455 30  0001 C CNN
+	1    6800 3400
+	1    0    0    -1  
+$EndComp
+$Comp
+L SW_PUSH SW1
+U 1 1 54307EA3
+P 5350 3800
+F 0 "SW1" H 5500 3910 50  0000 C CNN
+F 1 "SW_PUSH" H 5350 3720 50  0000 C CNN
+	1    5350 3800
+	1    0    0    -1  
+$EndComp
+$Comp
+L LED D1
+U 1 1 543060AA
+P 3800 1800
+F 0 "D1" H 3800 1900 50  0000 C CNN
+F 1 "LED" H 3800 1700 50  0000 C CNN
+	1    3800 1800
+	0    1    1    0   
+$EndComp
+$Comp
+L LED D10
+U 1 1 54306021
+P 6000 1800
+F 0 "D10" H 6000 1900 50  0000 C CNN
+F 1 "LED" H 6000 1700 50  0000 C CNN
+	1    6000 1800
+	0    1    1    0   
+$EndComp
+$Comp
+L LED D5
+U 1 1 54306018
+P 4800 1800
+F 0 "D5" H 4800 1900 50  0000 C CNN
+F 1 "LED" H 4800 1700 50  0000 C CNN
+	1    4800 1800
+	0    1    1    0   
+$EndComp
+$Comp
+L LED D8
+U 1 1 54306017
+P 5500 1800
+F 0 "D8" H 5500 1900 50  0000 C CNN
+F 1 "LED" H 5500 1700 50  0000 C CNN
+	1    5500 1800
+	0    1    1    0   
+$EndComp
+$Comp
+L LED D9
+U 1 1 54306016
+P 5750 1800
+F 0 "D9" H 5750 1900 50  0000 C CNN
+F 1 "LED" H 5750 1700 50  0000 C CNN
+	1    5750 1800
+	0    1    1    0   
+$EndComp
+$Comp
+L LED D7
+U 1 1 54306015
+P 5250 1800
+F 0 "D7" H 5250 1900 50  0000 C CNN
+F 1 "LED" H 5250 1700 50  0000 C CNN
+	1    5250 1800
+	0    1    1    0   
+$EndComp
+$Comp
+L LED D4
+U 1 1 5430600C
+P 4550 1800
+F 0 "D4" H 4550 1900 50  0000 C CNN
+F 1 "LED" H 4550 1700 50  0000 C CNN
+	1    4550 1800
+	0    1    1    0   
+$EndComp
+$Comp
+L LED D3
+U 1 1 54305FEF
+P 4300 1800
+F 0 "D3" H 4300 1900 50  0000 C CNN
+F 1 "LED" H 4300 1700 50  0000 C CNN
+	1    4300 1800
+	0    1    1    0   
+$EndComp
+$Comp
+L LED D2
+U 1 1 54305FC7
+P 4050 1800
+F 0 "D2" H 4050 1900 50  0000 C CNN
+F 1 "LED" H 4050 1700 50  0000 C CNN
+	1    4050 1800
+	0    1    1    0   
+$EndComp
+$Comp
+L GND #PWR5
+U 1 1 54305F2B
+P 4800 3450
+F 0 "#PWR5" H 4800 3450 30  0001 C CNN
+F 1 "GND" H 4800 3380 30  0001 C CNN
+	1    4800 3450
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR4
+U 1 1 54305F23
+P 4600 3450
+F 0 "#PWR4" H 4600 3450 30  0001 C CNN
+F 1 "GND" H 4600 3380 30  0001 C CNN
+	1    4600 3450
+	1    0    0    -1  
+$EndComp
+$Comp
+L DIL18 P1
+U 1 1 54305EF6
+P 4900 2750
+F 0 "P1" H 4900 3300 70  0000 C CNN
+F 1 "DIL18" H 4900 2200 70  0000 C CNN
+	1    4900 2750
+	0    -1   -1   0   
+$EndComp
+$Comp
+L GND #PWR3
+U 1 1 54305A0A
+P 4000 4050
+F 0 "#PWR3" H 4000 4050 30  0001 C CNN
+F 1 "GND" H 4000 3980 30  0001 C CNN
+	1    4000 4050
+	1    0    0    -1  
+$EndComp
+$Comp
+L C C1
+U 1 1 543059DB
+P 4000 3700
+F 0 "C1" H 4050 3800 50  0000 L CNN
+F 1 "0.01 uF" H 4050 3600 50  0000 L CNN
+	1    4000 3700
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR2
+U 1 1 543058FA
+P 3400 3650
+F 0 "#PWR2" H 3400 3650 30  0001 C CNN
+F 1 "GND" H 3400 3580 30  0001 C CNN
+	1    3400 3650
+	1    0    0    -1  
+$EndComp
+$Comp
+L LM7812 U1
+U 1 1 543058B4
+P 3400 3350
+F 0 "U1" H 3550 3154 60  0000 C CNN
+F 1 "LM7812" H 3400 3550 60  0000 C CNN
+	1    3400 3350
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR1
+U 1 1 54305893
+P 2700 3800
+F 0 "#PWR1" H 2700 3800 30  0001 C CNN
+F 1 "GND" H 2700 3730 30  0001 C CNN
+	1    2700 3800
+	1    0    0    -1  
+$EndComp
+$EndSCHEMATC
