@@ -313,6 +313,77 @@
 				\includegraphics[scale=0.8]{images/banco1.pdf}\caption{Banco de Medición Escala}\label{fig:banco1}
 			\end{figure}
 
+			Con este banco de medición, se fue variando la tensión de salida de la fuente a mensurar corroborando que la secuencia de encendido de los leds sea consistente con el cuadro \ref{tab:escala}, al realizar esto fue evidente que la escala no estaba ajustada apropiadamente por lo que modificamos la resistencia del resistor variable hasta que nos de acorde a la escala previamente establecida. Como resultado, el nuevo valor
+
+			\begin{equation}
+				R_2 = (3.87 \pm 0.05) \: k \Omega
+			\end{equation}
+
+			Esta diferencia puede ser causada por diversas causas:
+			\begin{itemize}
+				\item Los resistores no son exactos, por lo cual pueden haber diferencias en su comportamiento respecto del modelo hipotético planteado.
+
+				\item En los cálculos de las resistencias no se evalúa la posible alteración que produce el divisor de tensión (que ajusta el fondo de escala).
+			\end{itemize}
+
+			Una vez hecha esta modificación se planteó la necesidad de corroborar la escala sin utilizar la perilla de la fuente variable que consideramos poco precisa. Para ello se construyó un circuito de 10 resistores de $1 \: k\Omega$ en serie para usar como divisor de tensión, aplicando con la fuente variable una salida de tensión de 25 V.
+
+			\begin{figure}[H]
+			\centering
+				\includegraphics[scale=1]{images/div.pdf}\caption{Divisor de Tensión}\label{fig:divtens}
+			\end{figure}
+
+			De haber realizado correctamente los ajustes, el led que se enciende (o la cantidad depende el modo) debe corresponderse con los bornes que tomemos en el divisor de tensión. Por ejemplo en el siguiente banco no debe prenderse ningún led
+			
+			\begin{figure}[H]
+			\centering
+				\includegraphics[scale=0.8]{images/labo1_bb3.pdf}\caption{Banco Medición Escala}
+			\end{figure}
+
+			\begin{figure}[H]
+			\centering
+				\includegraphics[scale=0.9]{images/labo1_bb2.pdf}\caption{Se enciende un led}
+			\end{figure}
+
+			\begin{figure}[H]
+			\centering
+				\includegraphics[scale=0.9]{images/labo1_bb1.pdf}\caption{Se encienden dos led}
+			\end{figure}
+
+			\begin{figure}[H]
+			\centering
+				\includegraphics[scale=0.9]{images/labo1_bb.pdf}\caption{Se encienden cinco led}
+			\end{figure}
+
+			Al realizar estas pruebas, pudimos constatar que fehacientemente la escala era correcta.
+
+			\begin{figure}[H]
+			\centering
+				\includegraphics[scale=0.6]{images/res1.png}\caption{Prueba Encender un Led}
+			\end{figure}
+
+			\begin{figure}[H]
+			\centering
+				\includegraphics[scale=0.6]{images/res2.png}\caption{Prueba Encender cinco Led}
+			\end{figure}
+
+			\subsubsection{Corriente Led}
+
+			Así como previamente verificamos que el resistor que establece el fondo de escala / paso del vúmetro sea de una resistencia correcta, otra de las interrogantes fue si el resistor $R_1$ que establece el paso de corriente hacia los LED era de un valor adecuado. Para ello utilizando el mismo banco de medición que con anterioridad, se puso un amperímetro en serie con alguno de los Leds y como resultado se obtuvo:
+
+			\begin{equation}
+				R_1 = (8.37 \pm 0.08) \: mA
+			\end{equation}
+
+			Este valor se obtuvo con el multímetro digital Sonel CMM-40 ya que el multímetro utilizado con anterioridad no tomaba bien la lectura. Asumimos que debido a que la tensión en los leds es muy baja al añadirle el instrumento este le agrega una impedancia que hace caer la corriente y por ende no tomar lectura.
+
+			\begin{figure}[H]
+			\centering
+				\includegraphics[scale=0.5]{images/sonel.jpg}\caption{Medición Corriente Led}
+			\end{figure}
+
+			Este resultado es consistente con lo hecho en el desarrollo previo del proyecto.
+
 			\subsubsection{Consumo}
 				Una de las principales características de este circuito, es la capacidad de cambiar entre modo BAR y modo DOT, obteniendo así una misma lectura expresada en un sólo led o en un continuo de leds. A priori se puede deducir que entre ambos modos habrá una diferencia de consumo proveniente de tener un sólo led o un número de leds. Asímismo se espera que en modo punto el consumo sea lineal, para ello se fue variando la tensión de la fuente a mensurar y se midió la corriente. Con dichos valores se calculó la potencia.
 
@@ -425,7 +496,7 @@
 
 		Abstrayendonos del caso insdustrial planteado y aprovechando que un compañero poseía un Arduino y Raspberry, decidimos implementar un voltímetro que muestre en una pantalla LED la tensión mensurada y asímismo permita una lectura a distancia. Para ello utilizamos un Arduino Mega 2560 R3 \footnote{\url{http://arduino.cc/en/Main/arduinoBoardMega} } con un \textit{shield} LCD DFRobot\footnote{\url{http://www.dfrobot.com/wiki/index.php?title=Arduino_LCD_KeyPad_Shield_(SKU:_DFR0009)} } y una Raspberry Pi B+ \footnote{\url{http://www.raspberrypi.org/products/model-b-plus/} }.
 
-		En nuestro caso el Arduino actuará como sensor, que no sólo tomará las mediciones sino que las mostrará en una pantalla LCD sino que también las comunicará a la Raspberry por puerto serie. La Raspberry representará un sistema central de obtención de mediciones, en la misma se instaló un servidor web Apache y una simple página en PHP que muestra vía web las tensiones mensuradas en tiempo real. Además esta configuración nos permitiría registrar un historial de las mediciones realizadas para posterior análisis.
+		En nuestro caso el Arduino actuará como sensor, que no sólo tomará las mediciones y las mostrará en una pantalla LCD sino que también las comunicará a la Raspberry por puerto serie. La Raspberry representará un sistema central de obtención de mediciones, en la misma se instaló un servidor web Apache y una simple página en PHP que muestra vía web las tensiones mensuradas en tiempo real. Además esta configuración nos permitiría registrar un historial de las mediciones realizadas para posterior análisis.
 
 		Utilizando el mismo rango de tensiones utilizado con el vúmetro y siendo la máxima tensión permitida por el Arduino de 5 V es necesario utilizar un resistor de tensión, para lo cuál se utilizaron resistores de $100 \: \Omega$ y $1 \: k\Omega$. 
 
@@ -434,12 +505,150 @@
 				\includegraphics[scale=0.8]{images/arduino1.pdf}\caption{Banco Medición Arduino - Raspberry}
 			\end{figure}
 
-		Mediante un software compilado y cargado previamente, el Arduino mide la tensión aplicada al puerto analógico indicado (en este caso A1), calcula la tensión de la fuente mensurada teniendo en cuenta las características del resistor de tensión e imprime en el LCD el valor además de transmitirlo por puerto serie (emulado por USB). 
+		Mediante un software compilado y cargado previamente, el Arduino mide la tensión aplicada al puerto analógico indicado (en este caso A1), calcula la tensión de la fuente mensurada teniendo en cuenta las características del resistor de tensión e imprime en el LCD el valor además de transmitirlo por puerto serie (emulado por USB). La pantalla LCD muestra el voltaje medido por el sensor y la tensión calculada.
 
 		\begin{figure}[H]
 			\centering
-				\includegraphics[scale=0.25]{images/lcd.jpg}\caption{Prueba LCD}
+				\includegraphics[scale=1.5]{images/ard1.png}\caption{Prueba LCD}
 			\end{figure}
+
+			\begin{figure}[H]
+			\centering
+				\includegraphics[scale=0.75]{images/arduino7.pdf}\caption{Conexión Arduino - Raspberry}
+			\end{figure}
+
+			\begin{figure}[H]
+			\centering
+				\includegraphics[scale=0.1]{images/div.jpg}\caption{Divisor Tensión Empleado}
+			\end{figure}
+
+		\subsection{Funcionalidades}
+
+			A continuación se explicará brevemente las funcionalidades del esquema armado
+
+			\begin{itemize}
+				\item \textbf{Simple Visualización:} La pantalla led permite una lectura rápida y exacta de la tensión medida.
+				\item \textbf{Comandos Locales:} Si bien no estan implementados, la pantalla LCD posee unos botones que podría permitirnos cambiar el comportamiento del lector. Un ejemplo posible es medir mas de una tensión e ir cambiando cuál de ellas mostrar en pantalla.
+				\item \textbf{Comandos a Distancia:} Así como el Arduino envía datos por puerto Serie hacia la Raspberry, es capaz de recibirlos.
+				\item \textbf{Lecturas a Distancia:} La Raspberry posee un servidor web Apache, que nos permite acceder a las lecturas via intra o internet.
+				\item \textbf{Registros:} Cada lectura se guarda en un archivo con un timestamp en formato CSV, lo que nos permitiría a futuro efectuar un análisis de estos datos, graficarlos, calcular histogramas, etc.
+			\end{itemize}
+
+		\subsection{Demo}
+
+			En esta sección de mostrará brevemente en imágenes el funcionamiento general del artefacto y sus funcionalidades.
+
+			La Raspberry al estar conectada en red, nos permite conectarnos a la \textit{shell} de Linux mediante SSH.
+
+			\begin{figure}[H]
+			\centering
+				\includegraphics[scale=0.7]{images/Screenshot1.png}\caption{Acceso SSH}
+			\end{figure}
+
+			De esta manera podriamos tanto acceder a las lecturas como modificar los programas que las obtienen/muestran. Una vez en la \textit{shell}, se ejecuta un programa escrito en Python que es el encargado de abrir el puerto serie, imprimir las lecturas y guardarlas en los archivos correspondientes.
+
+			\begin{figure}[H]
+			\centering
+				\includegraphics[scale=0.7]{images/Screenshot2.png}\caption{Ejecución Script}
+			\end{figure}
+
+			Como es visible, el programa muestra por pantalla las lecturas que se van comunicando por puerto Serie. Estas mismas además se guardan en un archivo de logs, junto con un timestamp en formato CSV. Este es útil si deseamos hacer un análisis a posteriori de las lecturas.
+
+			\begin{figure}[H]
+			\centering
+				\includegraphics[scale=0.7]{images/Screenshot3.png}\caption{Log CSV con fecha y hora}
+			\end{figure}
+
+			Estas mismas lecturas son guardadas en un archivo que sirve de intermediario entre el script en Python y una página escrita en PHP, que lee dicho archivo y muestra en una web la última lectura realizada. La página está configurada para cada 500 ms volver a leer el archivo y así obtener una lectura en "tiempo real".
+
+			\begin{figure}[H]
+			\centering
+				\includegraphics[scale=0.7]{images/Screenshot4.png}\caption{Vista WEB}
+			\end{figure}
+
+		\subsection{Mediciones}
+
+			Dada la premisa de esta escalabilidad la exactitud, una de las primeras cosas a mensurar fue cuán exacta es la medición del artefacto armado. Para ello se armó un banco de medición con un multímetro digital, considerándose la lectura de éste como exacta y contrastando las lecturas del Arduino con ellas.
+
+			\begin{figure}[H]
+			\centering
+				\includegraphics[scale=1.2]{images/arduino2.pdf}\caption{Banco de Medición Arduino}
+			\end{figure}
+
+			Como datos a evaluar se consideró la tensión de salida de la fuente, la tensión de salida del divisor de tensión calculada analíticamente, la lectura del sensor y la lectura calculada por el arduino.
+
+			\begin{center}
+			{\footnotesize \begin{tabular}{ |l|l|l|l|l|l| }
+
+			\hline
+				\multicolumn{6}{|c|}{\textbf{Mediciones Arduino}}\\ \hline
+				$V_{fuente}$ [V]& $V_{divisor}$ [V]& $V_{sensor}$ [V]& $V_{lectura}$ [V]& $V_l - V_f$ [V]& $\epsilon _r$\\ \hline
+				$ 2.65  $ & $0.24$ & $0.23$ & $2.53  $ & $ 0.12  $  & $  0.05 $\\ \hline                                                                 
+				$ 5.06  $ & $0.46$ & $0.45$ & $4.92  $ & $ 0.14  $  & $  0.03 $\\ \hline                                                                 
+				$ 7.3   $ & $0.66$ & $0.65$ & $7.17  $ & $ 0.13  $  & $  0.02 $\\ \hline                                                                
+				$ 9.17  $ & $0.83$ & $0.81$ & $8.98  $ & $ 0.19  $  & $  0.02 $\\ \hline                                                                 
+				$ 12.21 $ & $1.10$ & $1.09$ & $11.97 $ & $ 0.15  $  & $  0.01 $\\ \hline                                                                   
+				$ 13.51 $ & $1.23$ & $1.21$ & $13.32 $ & $ 0.19  $  & $  0.01 $\\ \hline                                                                  
+				$ 15.16 $ & $1.38$ & $1.36$ & $14.97 $ & $ 0.19  $  & $  0.01 $\\ \hline                                                                  
+				$ 17.42 $ & $1.58$ & $1.57$ & $17.26 $ & $ 0.16  $  & $  0.01 $\\ \hline                                                                  
+				$ 18.38 $ & $1.67$ & $1.74$ & $19.22 $ & $ 0.84  $  & $  0.05 $\\ \hline                                                                  
+				$ 21.7  $ & $1.97$ & $1.96$ & $21.66 $ & $ 0.04  $  & $  0.00 $\\ \hline                                                                   
+				$ 22.8  $ & $2.07$ & $2.07$ & $22.7  $ & $ 0.10  $  & $  0.00 $\\ \hline                                                                 
+				$ 24    $ & $2.18$ & $2.17$ & $24.0  $ & $ 0.00  $  & $  0.00 $\\ \hline                                                                 
+				$ 25.3  $ & $2.30$ & $2.30$ & $25.26 $ & $ 0.04  $  & $  0.00 $\\ \hline                                                                 
+				$ 26.5  $ & $2.41$ & $2.41$ & $26.57 $ & $ 0.07  $  & $  0.00 $\\ \hline                                                                   
+				$ 27.5  $ & $2.50$ & $2.50$ & $27.46 $ & $ 0.04  $  & $  0.00 $\\ \hline                                                                
+				$ 30.4  $ & $2.76$ & $2.76$ & $30.36 $ & $ 0.04  $  & $  0.00 $\\ \hline                                                                  
+
+ 				
+				
+			\end{tabular}}\captionof{table}{Medición Arduino}\label{tab:medarduino}
+			\end{center}
+
+			Teniendo en cuenta este conjunto de datos, si comparamos la tensión teórica a la salida del divisor de tensión respecto de la tensión medida por el sensor del Arduino
+
+			\begin{figure}[H]
+			\centering
+				\includegraphics[scale=0.03]{images/arduino3.pdf}\caption{Banco de Medición Arduino}
+			\end{figure}
+			se puede apreciar que los valores mensurados por el Arduino son muy próximos a los valores teóricos.
+
+			Si luego comparamos la tensión de salida de la fuente con la lectura del arduino obtenemos:
+
+			\begin{figure}[H]
+			\centering
+				\includegraphics[scale=0.03]{images/arduino4.pdf}\caption{Banco de Medición Arduino}
+			\end{figure}
+
+			Para esta comparación comparamos la diferencia entre la lectura del arduino y la que consideramos real y asimismo calculamos su error relativo. Es evidente como aún en el pico de diferencia entre las lecturas, el error relativo es muy bajo, por lo que podemos afirmar que la lectura del Arduino es una lectura exacta. En los gráficos no se incluyen barras de error ya que el error relativo era muy bajo y en las gráficas no eran perceptibles.
+
+			\begin{figure}[H]
+			\centering
+				\includegraphics[scale=0.7]{images/arduino5.png}\caption{Banco de Medición Arduino}
+			\end{figure}
+
+			\begin{figure}[H]
+			\centering
+				\includegraphics[scale=0.7]{images/arduino6.png}\caption{Banco de Medición Arduino}
+			\end{figure}
+
+	\newpage
+	\section{Conclusiones}
+
+	Se logró implementar el trabajo práctico deseado dentro de un tiempo prudente y se fue capaz de plantear y ejecutar una posibilidad de expansión del proyecto.
+
+	Se elaboraron hipótesis y se corroboraron o corrigieron efectuando mediciones y aplicando los conceptos aprendidos durante la cursada y los trabajos prácticos previos. Además durante el transcurso de este proyecto, se aprendieron y aplicaron conceptos nuevos: diseño y confección de circuitos impresos, modelado de circuitos, servidores WEB, programación en Python y PHP, SSH, Arduino, Raspberry, entre otros. 
+
+	Mediante el análisis de las variables (tensión de entrada y salida) comprendimos en que circunstancias un regulador de tensión opera adecuadamente. Asímismo analizamos el circuito y detectamos los componentes centrales que modificaban el comportamiento del vúmetro. Realizamos las mediciones pertinentes respecto a esos componentes, corroborando los datos teóricos obtenidos durante el diseño del circuito o en el caso de uno de los resistores, obtuvimos una discrepancia y la corregimos. Luego se planteó un método de medición de la escala empleando un divisor de tensión aparte de la posibilidad de utilizar la perilla reguladora de una fuente variable. 
+
+	Conociendo que el circuito posee dos modos de trabajo, DOT y BAR, surgió la idea de analizar el consumo del circuito ya que la cantidad de LEDs a encender era muy diferente en uno u otro caso dependiendo la tensión mensurada. Se comentaron algunas hipótesis preliminares, luego de efectuadas las mediciones y analizando las gráficas obtenidas se concluyó que las hipótesis eran correctas; corroborando un incremento exponencial del consumo en modo BAR y lineal en modo DOT.
+
+	Habiendo concluido el análisis técnico del circuito, se comentó cuales eran las ventajas y desventajas de utilizar un vúmetro cómo voltímetro, luego planteando una serie de mejoras y/o alternativas que resuelvan dichas desventajas. Uno de los casos que desarrollamos, fue la idea de pensar en las dificultades de aplicar una medición en un entorno industrial de gran escala y empleamos un Arduino y Raspberry como prototipo de sensor a distancia.
+
+	Utilizando el Arduino (que posee un AVR Atmega 2560) fuimos capaces de tomar una lectura de tensión y mostrarla en una pantalla LED. Asímismo programamos una comunicación entre el Arduino y la Raspberry, permitiendonos sobre este último establecer una serie de funcionalidades como registro de lecturas para posterior análisis y consulta de lecturas vía web.
+
+	Luego utilizando los mismo conceptos aplicados al vúmetro, analizamos la exactitud del mismo; corroborando las hipótesis mediante las cuales justificamos la realización de esta extensión.
+
 
 	\newpage
 	\section{Referencias}
