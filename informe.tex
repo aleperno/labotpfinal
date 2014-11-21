@@ -522,7 +522,7 @@
 				\includegraphics[scale=0.1]{images/div.jpg}\caption{Divisor Tensión Empleado}
 			\end{figure}
 
-		\subsection{Funcionalidades}
+		\subsection{Funcionalidades}\label{sec:func}
 
 			A continuación se explicará brevemente las funcionalidades del esquema armado
 
@@ -533,6 +533,27 @@
 				\item \textbf{Lecturas a Distancia:} La Raspberry posee un servidor web Apache, que nos permite acceder a las lecturas via intra o internet.
 				\item \textbf{Registros:} Cada lectura se guarda en un archivo con un timestamp en formato CSV, lo que nos permitiría a futuro efectuar un análisis de estos datos, graficarlos, calcular histogramas, etc.
 			\end{itemize}
+
+		\subsection{Materiales y Costo}
+
+			\begin{center}
+			
+			{\footnotesize \begin{tabular}{ |l|l| }
+
+			\hline
+				\multicolumn{2}{|c|}{\textbf{Materiales}}\\ \hline
+				Descripción & Precio[\$] \\ \hline
+				Arduino Mega 2560 R3 & $399.90$ \\ \hline
+				Arduino LCD DFRobot Shield & $179.90$ \\ \hline
+				Raspberry Pi B+ & $989.90$ \\ \hline
+
+				\multicolumn{2}{|r|}{Total:  $1569.7$}\\ \hline
+
+
+			\end{tabular}}\captionof{table}{Lista de Precios}\label{tab:costo2}
+			\end{center}
+
+			Si bien el costo es elevado, ya disponiamos de los elementos. Además hay que tener en cuenta que son reutilizables para otros proyectos y que cumplen la función de prototipo, por lo que es posible conseguir un producto con las mismas capacidades afines a este proyecto, a costos más bajos.
 
 		\subsection{Demo}
 
@@ -632,6 +653,17 @@
 				\includegraphics[scale=0.7]{images/arduino6.png}\caption{Banco de Medición Arduino}
 			\end{figure}
 
+		\subsection{Otras Opciones}
+
+			Habiendo desarrollado una posible escalabilidad, se plantean tanto otras alternativas, como mejoras a la escalabilidad propuesta.
+
+			\begin{itemize}
+				\item \textbf{Fuente Variable:} Como plantea el proyecto de CEKIT, podemos construir una fuente variable utilizando el vúmetro como instrumento de medición de la tensión de salida.
+				\item \textbf{Comandos locales / distancia:} Como se mencionó en la sección \ref{sec:func}, el conjunto Arduino-Raspberry con el shield LCD nos permitiría aplicar comandos no sólo por distancia sino también de manera local. De esta manera podriamos agregar un conjunto de funcionalidades / variaciones que se ejecuten por orden de estos comandos.
+				\item \textbf{Comunicación Inalámbrica:} En el caso demostrado se utilizó comunicación cableada, lo cuál de necesitar cubrir grandes distancias puede ser ineficiente (o costoso) por lo cuál es preciso una comuniación inalámbrica. La Raspberry al tener un Linux embebido puede utilizar cualquier placa WiFi convencional. Para el Arduino es posible utilizar transmisores RF de bajo costo \footnote{Artículo en Mercado Libre \url{http://bit.ly/link_labo_rf}}.
+			\end{itemize}
+
+
 	\newpage
 	\section{Conclusiones}
 
@@ -653,5 +685,15 @@
 	\newpage
 	\section{Referencias}
 		\label{sec:referencias}
+		\begin{itemize}
+		\item \textbf{Especificaciones multímetro digital MS8221A} \url{https://github.com/aleperno/labotpfinal/raw/master/MS8221%20series.pdf}
+		\item \textbf{Especificaciones multímetro digital Sonel CMM-40} \url{http://www.sonel.pl/sites/default/files/en/datasheet/datasheet_CMM-40_en_v1.pdf}
+		\item \textbf{Hoja de datos LM3915} \url{https://github.com/aleperno/labotpfinal/raw/master/lm3914.pdf}
+		\item \textbf{Hoja de datos LM7812} \url{https://github.com/aleperno/labotpfinal/raw/master/lm7805c.pdf}
+		\item \textbf{Hoja de cálculos con Mediciones, Cálculos y Gráficos} \url{https://github.com/aleperno/labotpfinal/raw/master/tabla.ods}
+		\item \textbf{Especificaciones Raspberry Pi B+} \url{https://www.adafruit.com/datasheets/pi-specs.pdf}
+		\item \textbf{Especificaciones Arduino Mega 2560} \url{http://arduino.cc/en/Main/arduinoBoardMega2560}
+		\item \textbf{Especifiaciones LCD Shield} \url{http://www.dfrobot.com/wiki/index.php?title=Arduino_LCD_KeyPad_Shield_(SKU:_DFR0009)}
+		\end{itemize}
 
 \end{document}
