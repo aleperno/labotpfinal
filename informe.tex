@@ -280,6 +280,8 @@
 			\end{tabular}}\captionof{table}{Medición LM7812}\label{tab:regtension}
 			\end{center}
 
+			Siendo $V_{in}$ la tensión de entrada al regulador y $V_{out}$ la de salida.
+
 			\begin{figure}[H]
 			\centering
 				\includegraphics[scale=0.035]{images/med_reg.pdf}\caption{Tensión Salida Regulador}\label{fig:grafreg}
@@ -609,7 +611,7 @@
 				Con motivo de poder apreciarse la animación del gráfico, se grabó un video y se subió a YouTube en el cuál se muestra la pantalla del Arduino y la gráfica que muestra las lecturas al mismo tiempo. El link al video es \url{http://youtu.be/Gr6E5Hn9Tg4}.
 
 			\subsubsection{Análisis de Datos}
-				Haciendo uso del archivo CSV, podemos importar los datos a una planilla de cálculo de manera sencilla para operar con los mismos. En este caso importamos una serie de 100 mediciones en una planilla de LibreOffice Calc \footnote{\url{http://www.libreoffice.org/}} y con ellos calculamos los valores mínimo, máximo y promedio de las tensiones medidas.
+				Haciendo uso del archivo CSV, podemos importar los datos a una planilla de cálculo de manera sencilla para operar con los mismos. En este caso importamos una serie de 100 mediciones en una planilla de LibreOffice Calc \footnote{\url{http://www.libreoffice.org/}} y con ellos calculamos los valores mínimo, máximo y promedio de las tensiones medidas. Tanto el archivo CSV como la planilla de cálculos se encuentran disponibles en el repositorio git \footnote{Ver sección \ref{sec:referencias}}.
 
 				\begin{figure}[H]
 					\centering
@@ -640,7 +642,7 @@
 
 			\hline
 				\multicolumn{6}{|c|}{\textbf{Mediciones Arduino}}\\ \hline
-				$V_{fuente}$ [V]& $V_{divisor}$ [V]& $V_{sensor}$ [V]& $V_{lectura}$ [V]& $V_l - V_f$ [V]& $\epsilon _r$\\ \hline
+				$V_{fuente}$ [V]& $V_{divisor}$ [V]& $V_{sensor}$ [V]& $ V_{lectura}$ [V]& $| V_l - V_f |$ [V]& $\epsilon _r$\\ \hline
 				$ 2.65  $ & $0.24$ & $0.23$ & $2.53  $ & $ 0.12  $  & $  0.05 $\\ \hline                                                                 
 				$ 5.06  $ & $0.46$ & $0.45$ & $4.92  $ & $ 0.14  $  & $  0.03 $\\ \hline                                                                 
 				$ 7.3   $ & $0.66$ & $0.65$ & $7.17  $ & $ 0.13  $  & $  0.02 $\\ \hline                                                                
@@ -663,11 +665,13 @@
 			\end{tabular}}\captionof{table}{Medición Arduino}\label{tab:medarduino}
 			\end{center}
 
+			Donde $V_{fuente}$ es la tensión de salida de la fuente, $V_{divisor}$ la tensión de salida teórica del divisor de tensión, $V_{sensor}$ la tensión medida por el puerto analógico del Arduino, $V_{lectura}$ la tensión de salida de la fuente calculada por el Arduino, $V_l - V_f$ la diferencia entre este cálculo y el considerado real y $\epsilon _r$ su error relativo.
+
 			Teniendo en cuenta este conjunto de datos, si comparamos la tensión teórica a la salida del divisor de tensión respecto de la tensión medida por el sensor del Arduino
 
 			\begin{figure}[H]
 			\centering
-				\includegraphics[scale=0.03]{images/arduino3.pdf}\caption{Banco de Medición Arduino}
+				\includegraphics[scale=0.03]{images/arduino3.pdf}\caption{Medición Puerto Analógico}
 			\end{figure}
 			se puede apreciar que los valores mensurados por el Arduino son muy próximos a los valores teóricos.
 
@@ -675,19 +679,19 @@
 
 			\begin{figure}[H]
 			\centering
-				\includegraphics[scale=0.03]{images/arduino4.pdf}\caption{Banco de Medición Arduino}
+				\includegraphics[scale=0.03]{images/arduino4.pdf}\caption{Comparación Resultados}
 			\end{figure}
 
 			Para esta comparación comparamos la diferencia entre la lectura del arduino y la que consideramos real y asimismo calculamos su error relativo. Es evidente como aún en el pico de diferencia entre las lecturas, el error relativo es muy bajo, por lo que podemos afirmar que la lectura del Arduino es una lectura exacta. En los gráficos no se incluyen barras de error ya que el error relativo era muy bajo y en las gráficas no eran perceptibles.
 
 			\begin{figure}[H]
 			\centering
-				\includegraphics[scale=0.7]{images/arduino5.png}\caption{Banco de Medición Arduino}
+				\includegraphics[scale=0.7]{images/arduino5.png}\caption{Ejemplo lectura Arduino}
 			\end{figure}
 
 			\begin{figure}[H]
 			\centering
-				\includegraphics[scale=0.7]{images/arduino6.png}\caption{Banco de Medición Arduino}
+				\includegraphics[scale=0.7]{images/arduino6.png}\caption{Ejemplo lectura Arduino}
 			\end{figure}
 
 		\subsection{Otras Opciones}
@@ -723,6 +727,7 @@
 	\section{Referencias}
 		\label{sec:referencias}
 		\begin{itemize}
+		\item \textbf{Repositorio General} \url{https://github.com/aleperno/labotpfinal}
 		\item \textbf{Especificaciones multímetro digital MS8221A} \url{https://github.com/aleperno/labotpfinal/raw/master/MS8221%20series.pdf}
 		\item \textbf{Especificaciones multímetro digital Sonel CMM-40} \url{http://www.sonel.pl/sites/default/files/en/datasheet/datasheet_CMM-40_en_v1.pdf}
 		\item \textbf{Hoja de datos LM3915} \url{https://github.com/aleperno/labotpfinal/raw/master/lm3914.pdf}
@@ -731,6 +736,11 @@
 		\item \textbf{Especificaciones Raspberry Pi B+} \url{https://www.adafruit.com/datasheets/pi-specs.pdf}
 		\item \textbf{Especificaciones Arduino Mega 2560} \url{http://arduino.cc/en/Main/arduinoBoardMega2560}
 		\item \textbf{Especifiaciones LCD Shield} \url{http://www.dfrobot.com/wiki/index.php?title=Arduino_LCD_KeyPad_Shield_(SKU:_DFR0009)}
+		\item \textbf{Gráficos Arduino y Protobard} \url{http://fritzing.org/home/}
+		\item \textbf{Código Fuente Arduino} \url{https://github.com/aleperno/labotpfinal/blob/master/src/labo.ino}
+		\item \textbf{Código Fuente Raspberry} \url{https://github.com/aleperno/labotpfinal/blob/master/src/labo.py}
+		\item \textbf{Código Fuente PHP} \url{https://github.com/aleperno/labotpfinal/blob/master/src/index.php}
+		\item \textbf{Código Fuente Grafico Python} \url{https://github.com/aleperno/labotpfinal/blob/master/src/graf.py}
 		\end{itemize}
 
 \end{document}
