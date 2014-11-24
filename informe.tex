@@ -71,7 +71,7 @@
 
 \newpage 
 \section{Introducción}
-	El objetivo de este informe es exponer el trabajo práctico final, mostrando los desarrollos, mediciones efectuadas, funcionamiento y decisiones tomadas durante la confección del mismo. Éste fue realizado a lo largo del cuatrimestre en paralelo con las clases prácticas y los otros trabajos prácticos. Todos los archivo aquí utilizados, incluyendo este informe y su fuente estarán disponibles en \url{http://github.com/aleperno/labotpfinal}. \sout{Adicionalmente habrán disponibles algunos videos en YouTube con filmaciones de determinadas mediciones, por lo que es recomendable tener este informe en formato digital para fácil acceso a dichos links.}
+	El objetivo de este informe es exponer el trabajo práctico final, mostrando los desarrollos, mediciones efectuadas, funcionamiento y decisiones tomadas durante la confección del mismo. Éste fue realizado a lo largo del cuatrimestre en paralelo con las clases prácticas y los otros trabajos prácticos. Todos los archivo aquí utilizados, incluyendo este informe y su fuente estarán disponibles en \url{http://github.com/aleperno/labotpfinal}. Adicionalmente habrán disponibles algunos videos en YouTube con filmaciones de determinadas mediciones, por lo que es recomendable tener este informe en formato digital para fácil acceso a dichos links.
 
 	\subsection{Opciones Disponibles}
 		Habiendo diversas alternativas de proyectos de TPs para elegir, en un principio no estuvo del todo claro cuál elegir ya que todos tenian sus complicaciones y objetivos. Algunas de las alternativas disponibles eran la confección de una fuente, un sensor, etc.
@@ -222,6 +222,12 @@
 
 			\end{tabular}}\captionof{table}{Lista de Precios}\label{tab:costo}
 			\end{center}
+
+			\subsection{Cronograma de Trabajo}
+				\begin{figure}[H]
+					\centering
+					\includegraphics[scale=0.8]{images/Cronograma.pdf}\caption{Cronograma de Trabajo}
+					\end{figure}
 
 		\subsection{Mediciones}
 
@@ -586,6 +592,37 @@
 			\centering
 				\includegraphics[scale=0.7]{images/Screenshot4.png}\caption{Vista WEB}
 			\end{figure}
+
+			\subsubsection{Graficador en Vivo}
+				Como prueba de concepto, se escribió un programa en Python el cuál toma la comuniación en puerto serie y mediante la librería gráfica MatPlotLib \footnote{\url{http://matplotlib.org/}} grafica y actualiza la gráfica a medida que van llegando lecturas mediante el puerto serial. Para ello se armó un banco de prueba con la entrada analógica del arduino A1 con la posibilidad de conectarla a las salidas de 3.3 V, 5 V y GND del Arduino.
+
+				\begin{figure}[H]
+					\centering
+					\includegraphics[scale=1]{images/arduino8.pdf}\caption{Banco de Prueba}
+					\end{figure}
+
+				\begin{figure}[H]
+					\centering
+					\includegraphics[scale=0.75]{images/figure_1.png}\caption{Captura de Gráfica}
+					\end{figure}
+
+				Con motivo de poder apreciarse la animación del gráfico, se grabó un video y se subió a YouTube en el cuál se muestra la pantalla del Arduino y la gráfica que muestra las lecturas al mismo tiempo. El link al video es \url{http://youtu.be/Gr6E5Hn9Tg4}.
+
+			\subsubsection{Análisis de Datos}
+				Haciendo uso del archivo CSV, podemos importar los datos a una planilla de cálculo de manera sencilla para operar con los mismos. En este caso importamos una serie de 100 mediciones en una planilla de LibreOffice Calc \footnote{\url{http://www.libreoffice.org/}} y con ellos calculamos los valores mínimo, máximo y promedio de las tensiones medidas.
+
+				\begin{figure}[H]
+					\centering
+					\includegraphics[scale=1]{images/arduino9.png}\caption{Hoja de Cálculos}
+					\end{figure}
+
+				Utilizando la misma planilla de cálculos podemos graficar los datos y obtener una imagen del valor promedio
+
+				\begin{figure}[H]
+					\centering
+					\includegraphics[scale=0.03]{images/arduino10.pdf}\caption{Hoja de Cálculos}
+					\end{figure}
+
 
 		\subsection{Mediciones}
 
