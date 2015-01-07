@@ -59,12 +59,18 @@
 
 
 \begin{document}
-\includepdf{caratula.pdf}
+\includepdf{attachments/caratula.pdf}
+
+
+\newpage\null\thispagestyle{empty}\newpage
 
 \maketitle
+\newpage\null\thispagestyle{empty}\newpage
 
 \newpage
 \tableofcontents
+
+\newpage\null\thispagestyle{empty}\newpage
 
 \newpage
 
@@ -73,8 +79,8 @@
 \section{Introducción}
 	El objetivo de este informe es exponer el trabajo práctico final, mostrando los desarrollos, mediciones efectuadas, funcionamiento y decisiones tomadas durante la confección del mismo. Éste fue realizado a lo largo del cuatrimestre en paralelo con las clases prácticas y los otros trabajos prácticos. Todos los archivo aquí utilizados, incluyendo este informe y su fuente estarán disponibles en \url{http://github.com/aleperno/labotpfinal}. Adicionalmente habrán disponibles algunos videos en YouTube con filmaciones de determinadas mediciones, por lo que es recomendable tener este informe en formato digital para fácil acceso a dichos links.
 
-	\subsection{Opciones Disponibles}
-		Habiendo diversas alternativas de proyectos de TPs para elegir, en un principio no estuvo del todo claro cuál elegir ya que todos tenian sus complicaciones y objetivos. Algunas de las alternativas disponibles eran la confección de una fuente, un sensor, etc.
+%	\subsection{Opciones Disponibles}
+%		Habiendo diversas alternativas de proyectos de TPs para elegir, en un principio no estuvo del todo claro cuál elegir ya que todos tenian sus complicaciones y objetivos. Algunas de las alternativas disponibles eran la confección de una fuente, un sensor, etc.
 
 	\subsection{Opción Elegida}
 		Como proyecto base decidimos desarrollar un voltímetro vúmetro disponible en los cursos de CEKIT \footnote{Pdf del proyecto oringal \url{https://github.com/aleperno/labotpfinal/raw/master/cekit.pdf}}. Elegimos este proyecto ya que si bien se trata de un proyecto relativamente sencillo, tiene aplicaciones reales tanto industriales como hogareñas.
@@ -82,6 +88,18 @@
 		Además aprovechando que uno de los integrantes poseía un Arduino \footnote{\url{http://arduino.cc/}} y una Raspberry \footnote{\url{http://www.raspberrypi.org/}} decidimos como opcional escalar el proyecto utilizando dichos elementos. En el informe se desarrollará el proyecto base y el opcional se detallará en la sección \ref{sec:escalabilidad} de escalabilidad del proyecto.
 
 		El vúmetro consiste en un arreglo de LEDs que se van encendiendo conforme aumenta la tensión mensurada, la relación entre la cantidad de LEDs encendidos y la tensión proviene de las características intrínsecas del circuito cuyo análisis es parte de este informe. En este proyecto no sólo se implementan las nociones aprendidas tanto en las clases teóricas  como en los TPs realizados, sino que además se emplearon nociones de diseño y elaboración de circuitos y software; por lo que es válido decir que este es un proyecto integrador.
+
+	\subsection{Contenido}
+		Breve explicación de los capítulos subsiguientes
+		\begin{itemize}
+			\item \textbf{Circuito Esquemático} Circuito esquemático del proyecto, con su código fuente incluido.
+			\item \textbf{Diagrama de Bloques} Abstracción de los elementos más importantes del circuito con una breve explicación de sus funciones.
+			\item \textbf{Desarrollo} Se analizará analíticamente el circuito previo a su confección, elaborando hipótesis que luego seran corroboradas o refutadas mediante mediciones mostrando el funcionamiento y comportamiento del proyecto.
+			\item \textbf{Escalabilidad} Se plantean las posibilidades de expansión de circuito, desarrollando algunas de ellas al igual que el proyecto realizando hipótesis, análisis y mediciones.
+			\item \textbf{Conclusiones} Conclusiones generales del TP, incluyendo lo aprendido y toda información significativa que surgió del desarrollo del proyecto.
+			\item \textbf{Referencias} Referencias hacia los datos o elementos utilizados.
+			\item \textbf{Anexo} Información adicional y más completa de especificaciones mencionadas en el desarrollo del TP.
+		\end{itemize}
 
 	\newpage
 	\section{Circuito Esquemático}
@@ -103,12 +121,14 @@
 
 	\begin{itemize}
 		\item \textbf{Fuente de Alimentación:} La fuente que alimenta el circuito, ésta debe ser de al menos 14 V ya que el regulador de tensión es de 12V.
-		\item \textbf{Regulador de Tensión:} El regulador cumple la función de mantener el equipo alimentado con 12 V, evitando daños si la entrada es mayor.
+		\item \textbf{Regulador de Tensión LM3914:} El regulador cumple la función de mantener el equipo alimentado con 12 V, evitando daños si la entrada es mayor.
 		\item \textbf{Selector Modo:} Nos permite seleccionar ambos modos de funcionamiento del circuito, tanto en "DOT" (se prende un sólo LED), como "BAR" (Se prende consecutivamente el array).
 		\item \textbf{Fuente Medición:} Es la fuente de tensión a mensurar.
 		\item \textbf{Divisor de Tensión:} Siendo que el integrado posee un límite de 5 V de entrada a medir, se coloca un divisor de tensión para ajustar la tensión a las especificaciones.
 		\item \textbf{Array de LEDs:} Es el arreglo de LEDs luminosos en si, en este caso consiste de 10 LEDs.
 		\item \textbf{Integrado LM3914: } Es el integrado encargado de la lógica del circuito.
+
+		La fuente de alimentación alimenta el regulador de tensión, obteniéndose en la salida del mismo 12 V estables que alimentan el circuito. Asimismo el divisor de tensión ajusta la tensión aplicada por la fuente a mensurar para que la misma esté dentro de los límites del integrado. El integrado LM3914 es el encargado de la lógica del circuito, al ir incrementando la tensión mensurada, se van incrementando la cantidad de leds (o la posicion del led) encendidos en el array.
 	\end{itemize}
 
 	\section{Desarrollo}
@@ -224,6 +244,7 @@
 			\end{center}
 
 			\subsection{Cronograma de Trabajo}
+				Se cumplió con el siguiente cronograma de trabajo, el mismo fue conforme a lo estipulado y a las limitaciones de carga horaria de la cursada.
 				\begin{figure}[H]
 					\centering
 					\includegraphics[scale=0.8]{images/Cronograma.pdf}\caption{Cronograma de Trabajo}
@@ -287,7 +308,9 @@
 				\includegraphics[scale=0.035]{images/med_reg.pdf}\caption{Tensión Salida Regulador}\label{fig:grafreg}
 			\end{figure}
 
-			Como era de esperarse, la tensión de salida es lineal e inferior a la tensión de entrada a tensiones bajas. También confirmamos que el punto en el cuál la tensión de salida se estabiliza (13.13 V) se encuentra por encima de la tensión de regulación. La figura \ref{fig:grafreg} no posee barras de errores ya que como se puede apreciar en el cuadro \ref{tab:regtension} los errores son despreciables respectos de los valores que operamos.
+			Consistente con las hipótesis, la tensión de salida es lineal e inferior a la tensión de entrada a tensiones bajas. También se confirmo el punto en el cuál la tensión de salida se estabiliza (13.13 V) se encuentra por encima de la tensión de regulación. La figura \ref{fig:grafreg} no posee barras de errores dado a como es apreciable en el cuadro \ref{tab:regtension} los errores son despreciables respectos de los valores en los que se opera.
+
+			Considerando la corriente de entrada del regulador\footnote{Ver sección \ref{sec:anexo}}  $8 \: mA$ la fuente se considera ideal considerándose dicha corriente baja, asimismo siendo la impedancia de salida del regulador $18 \: m\Omega$ muy inferior a la impedancia de entrada del mulímetro empleado ($10 \: M\Omega$) se considera que en ambas lecturas despreciable cualquier efecto de carga que pudiera existir. 
 
 			\subsubsection{Escala}
 				Acorde a las hipótesis realizadas, el vúmero posee un fondo de escala de 25 V distribuidos en 10 LEDs, por lo que cada LED representará un aumento en la tensión de 2,5 V. 
@@ -332,7 +355,11 @@
 				\item Los resistores no son exactos, por lo cual pueden haber diferencias en su comportamiento respecto del modelo hipotético planteado.
 
 				\item En los cálculos de las resistencias no se evalúa la posible alteración que produce el divisor de tensión (que ajusta el fondo de escala).
+
+
 			\end{itemize}
+
+			\textbf{Efecto de Carga:} Si bien se considera la lectura del DVM más exacta que la lectura del panel LCD de la fuente, al estar el multímetro conectado en paralelo con dos resistores de una resistencia conjunta de $90 \: k\Omega \cong 0.1 \: M\Omega$ de un orden inferior al de su resistencia interna de $10 \: M\Omega$ se considera el efecto mínimo.
 
 			Una vez hecha esta modificación se planteó la necesidad de corroborar la escala sin utilizar la perilla de la fuente variable que consideramos poco precisa. Para ello se construyó un circuito de 10 resistores de $1 \: k\Omega$ en serie para usar como divisor de tensión, aplicando con la fuente variable una salida de tensión de 25 V.
 
@@ -383,7 +410,7 @@
 				R_1 = (8.37 \pm 0.08) \: mA
 			\end{equation}
 
-			Este valor se obtuvo con el multímetro digital Sonel CMM-40 ya que el multímetro utilizado con anterioridad no tomaba bien la lectura. Asumimos que debido a que la tensión en los leds es muy baja al añadirle el instrumento este le agrega una impedancia que hace caer la corriente y por ende no tomar lectura.
+			Este valor se obtuvo con el multímetro digital Sonel CMM-40 ya que el multímetro utilizado con anterioridad no tomaba bien la lectura. Asumimos que debido a que la tensión en los leds es muy baja al añadirle el instrumento este le agrega una impedancia que hace caer la corriente y por ende no tomar lectura. Otra posibilidad es que los multímetros MS8221A empleados al momento de esta medición tengan su modo amperímetro quemado.
 
 			\begin{figure}[H]
 			\centering
@@ -393,7 +420,7 @@
 			Este resultado es consistente con lo hecho en el desarrollo previo del proyecto.
 
 			\subsubsection{Consumo}
-				Una de las principales características de este circuito, es la capacidad de cambiar entre modo BAR y modo DOT, obteniendo así una misma lectura expresada en un sólo led o en un continuo de leds. A priori se puede deducir que entre ambos modos habrá una diferencia de consumo proveniente de tener un sólo led o un número de leds. Asímismo se espera que en modo punto el consumo sea lineal, para ello se fue variando la tensión de la fuente a mensurar y se midió la corriente. Con dichos valores se calculó la potencia.
+				Una de las principales características de este circuito, es la capacidad de cambiar entre modo BAR y modo DOT, obteniendo así una misma lectura expresada en un sólo led o en un continuo de leds. A priori se puede deducir que entre ambos modos habrá una diferencia de consumo proveniente de tener un sólo led o un número de leds. Asímismo se espera que en modo punto el consumo sea constante y lineal en modo barra, para ello se fue variando la tensión de la fuente a mensurar y se midió la corriente. Con dichos valores se calculó la potencia teniendo en cuenta que la tensión aplicada por la fuente de alimentación fue de 15 V.
 
 				\begin{center}
 			
@@ -402,28 +429,28 @@
 			\hline
 				\multicolumn{6}{|c|}{\textbf{Mediciones DOT}}\\ \hline
 				Tensión [V] & $\Delta V$ [V] & Corriente [mA] & $\Delta I$ [mA] & Consumo [mW] & $\Delta$ Consumo [mW]\\ \hline
-				$0.40$ & $0.02$ & $10.2$ & $0.3$ & $4.1$ & $0.3$ \\ \hline
-				$1.29$ & $0.02$ & $10.2$ & $0.3$ & $13.2$ & $0.5$ \\ \hline
-				$2.50$ & $0.03$ & $24.3$ & $0.4$ & $60.8$ & $1.6$ \\ \hline
-				$3.82$ & $0.03$ & $24.4$ & $0.4$ & $93.2$ & $2.3$ \\ \hline
-				$5.08$ & $0.04$ & $24.3$ & $0.4$ & $123.4$ & $2.9$ \\ \hline
-				$6.78$ & $0.05$ & $24.3$ & $0.4$ & $164.8$ & $3.8$ \\ \hline
-				$7.50$ & $0.05$ & $23.7$ & $0.4$ & $177.8$ & $4.1$ \\ \hline
-				$8.85$ & $0.06$ & $23.8$ & $0.4$ & $210.6$ & $4.8$ \\ \hline
-				$10.61$ & $0.07$ & $24.5$ & $0.4$ & $259.9$ & $5.8$ \\ \hline
-				$11.83$ & $0.07$ & $24.4$ & $0.4$ & $288.7$ & $6.4$ \\ \hline
-				$12.64$ & $0.08$ & $24.4$ & $0.4$ & $308.4$ & $6.8$ \\ \hline
-				$13.81$ & $0.08$ & $24.4$ & $0.4$ & $337.0$ & $7.4$ \\ \hline
-				$15.08$ & $0.09$ & $24.1$ & $0.4$ & $363.4$ & $8.0$ \\ \hline
-				$16.75$ & $0.1$ & $24.1$ & $0.4$ & $403.7$ & $8.8$ \\ \hline
-				$17.63$ & $0.1$ & $24.0$ & $0.4$ & $423.1$ & $9.2$ \\ \hline
-				$18.75$ & $0.1$ & $24.0$ & $0.4$ & $450.0$ & $9.8$ \\ \hline
-				$20.0$ & $0.2$ & $23.7$ & $0.4$ & $474.0$ & $10.3$ \\ \hline
-				$21.3$ & $0.2$ & $23.7$ & $0.4$ & $504.8$ & $11.0$ \\ \hline
-				$22.5$ & $0.2$ & $23.9$ & $0.4$ & $537.8$ & $11.7$ \\ \hline
-				$23.7$ & $0.2$ & $23.9$ & $0.4$ & $566.4$ & $12.3$ \\ \hline
-				$25.0$ & $0.2$ & $24.0$ & $0.4$ & $600.0$ & $13.0$ \\ \hline
-				$26.4$ & $0.2$ & $24.0$ & $0.4$ & $633.6$ & $13.7$ \\ \hline
+				$0.40$ & $0.02$ & $10.2$ & $0.3$ & $153.0$ & $3.4$ \\ \hline
+				$1.29$ & $0.02$ & $10.2$ & $0.3$ & $153.0$ & $3.4$ \\ \hline
+				$2.50$ & $0.03$ & $24.3$ & $0.4$ & $364.5$ & $5.9$ \\ \hline
+				$3.82$ & $0.03$ & $24.4$ & $0.4$ & $366.0$ & $5.9$ \\ \hline
+				$5.08$ & $0.04$ & $24.3$ & $0.4$ & $364.5$ & $5.9$ \\ \hline
+				$6.78$ & $0.05$ & $24.3$ & $0.4$ & $364.5$ & $5.9$ \\ \hline
+				$7.50$ & $0.05$ & $23.7$ & $0.4$ & $355.5$ & $5.8$ \\ \hline
+				$8.85$ & $0.06$ & $23.8$ & $0.4$ & $357.0$ & $5.8$ \\ \hline
+				$10.61$ & $0.07$ & $24.5$ & $0.4$ & $367.5$ & $6.0$ \\ \hline
+				$11.83$ & $0.07$ & $24.4$ & $0.4$ & $366.0$ & $5.9$ \\ \hline
+				$12.64$ & $0.08$ & $24.4$ & $0.4$ & $366.0$ & $5.9$ \\ \hline
+				$13.81$ & $0.08$ & $24.4$ & $0.4$ & $366.0$ & $5.9$ \\ \hline
+				$15.08$ & $0.09$ & $24.1$ & $0.4$ & $361.5$ & $5.9$ \\ \hline
+				$16.75$ & $0.1$ & $24.1$ & $0.4$ & $361.5$ & $5.9$ \\ \hline
+				$17.63$ & $0.1$ & $24.0$ & $0.4$ & $360.0$ & $5.9$ \\ \hline
+				$18.75$ & $0.1$ & $24.0$ & $0.4$ & $360.0$ & $5.9$ \\ \hline
+				$20.0$ & $0.2$ & $23.7$ & $0.4$ & $355.5$ & $5.8$ \\ \hline
+				$21.3$ & $0.2$ & $23.7$ & $0.4$ & $355.5$ & $5.8$ \\ \hline
+				$22.5$ & $0.2$ & $23.9$ & $0.4$ & $358.5$ & $5.9$ \\ \hline
+				$23.7$ & $0.2$ & $23.9$ & $0.4$ & $358.5$ & $5.9$ \\ \hline
+				$25.0$ & $0.2$ & $24.0$ & $0.4$ & $360.0$ & $5.9$ \\ \hline
+				$26.4$ & $0.2$ & $24.0$ & $0.4$ & $360.0$ & $5.9$ \\ \hline
  				
 				
 			\end{tabular}}\captionof{table}{Medición Consumo modo DOT}\label{tab:consumodot}
@@ -435,28 +462,28 @@
 			\hline
 				\multicolumn{6}{|c|}{\textbf{Mediciones BAR}}\\ \hline
 				Tensión [V] & $\Delta V$ [V] & Corriente [mA] & $\Delta I$ [mA] & Consumo [mW] & $\Delta$ Consumo [mW]\\ \hline
-				$0.40$  & $0.02$ & $ 10.3 $ &  $ 0.3 $ & $ 4.1 $   & $ 0.3 $ \\ \hline
-				$1.29$  & $0.02$ & $ 10.3$ &   $ 0.3 $ & $ 13.3 $  & $ 0.5 $ \\ \hline
-				$2.50$  & $0.03$ & $ 24.5 $ &  $ 0.4 $ & $ 61.3 $  & $ 1.6 $ \\ \hline
-				$3.82$  & $0.03$ & $ 24.5 $ &  $ 0.4 $ & $ 93.6 $  & $ 2.3 $ \\ \hline
-				$5.08$  & $0.04$ & $ 38.5 $ &  $ 0.6 $ & $ 195.6 $ & $ 4.3 $ \\ \hline
-				$6.78$  & $0.05$ & $ 38.5 $ &  $ 0.6 $ & $ 261.0 $ & $ 5.6 $ \\ \hline
-				$7.50$  & $0.05$ & $ 51.8 $ &  $ 0.8 $ & $ 388.5 $ & $ 7.9 $ \\ \hline
-				$8.85$  & $0.06$ & $ 51.8 $ &  $ 0.8 $ & $ 458.4 $ & $ 9.2 $ \\ \hline
-				$10.61$ & $0.07$ & $ 65.7 $ &  $ 0.9 $ & $ 697.1 $ & $ 13.6 $ \\ \hline
-				$11.83$ & $0.07$ & $ 65.7 $ &  $ 0.9 $ & $ 777.2 $ & $ 15.1 $ \\ \hline
-				$12.64$ & $0.08$ & $ 79.6 $ &  $ 1.1 $ & $ 1006.1 $ & $ 19.2 $ \\ \hline
-				$13.81$ & $0.08$ & $ 79.6 $ &  $ 1.1 $ & $ 1099.3 $ & $ 20.9 $ \\ \hline
-				$15.08$ & $0.09$ & $ 93.4$ &   $ 1.3 $ & $  1408.5$ & $ 26.4 $ \\ \hline
-				$16.75$ & $0.1$  & $ 93.4 $ &  $ 1.3 $ & $ 1564.5 $ & $ 29.3 $ \\ \hline
-				$17.63$ & $0.1$  & $ 107.3 $ & $ 1.4 $ & $ 1891.7 $ & $ 35.0 $ \\ \hline
-				$18.75$ & $0.1$  & $ 107.3 $ & $ 1.4 $ & $ 2011.9 $ & $ 37.2 $ \\ \hline
-				$20.0$  & $0.2$  & $ 120.4 $ & $ 1.6 $ & $ 2408.0 $ & $ 44.2 $ \\ \hline
-				$21.3$  & $0.2$  & $ 120.5 $ & $ 1.6 $ & $ 2566.7 $ & $ 47.0 $ \\ \hline
-				$22.5$  & $0.2$  & $ 133.0 $ & $ 1.7 $ & $ 2992.5 $ & $ 54.5 $ \\ \hline
-				$23.7$  & $0.2$  & $ 133.1 $ & $ 1.7 $ & $ 3154.5 $ & $ 57.4 $ \\ \hline
-				$25.0$  & $0.2$  & $ 145.0 $ & $ 1.9 $ & $ 3625.0 $ & $ 65.6 $ \\ \hline
-				$26.4$  & $0.2$  & $ 145.2 $ & $ 1.9 $ & $ 3833.3 $ & $ 69.3 $ \\ \hline
+				$0.40$  & $0.02$ & $ 10.3 $ &  $ 0.3 $ & $ 154.5$   & $ 6.4 $ \\ \hline
+				$1.29$  & $0.02$ & $ 10.3$ &   $ 0.3 $ & $ 154.5$  & $ 6.4 $ \\ \hline
+				$2.50$  & $0.03$ & $ 24.5 $ &  $ 0.4 $ & $ 367.5 $  & $ 9.0 $ \\ \hline
+				$3.82$  & $0.03$ & $ 24.5 $ &  $ 0.4 $ & $ 367.5$  & $ 9.0 $ \\ \hline
+				$5.08$  & $0.04$ & $ 38.5 $ &  $ 0.6 $ & $ 577.5 $ & $ 11.5 $ \\ \hline
+				$6.78$  & $0.05$ & $ 38.5 $ &  $ 0.6 $ & $ 577.5 $ & $ 11.5$ \\ \hline
+				$7.50$  & $0.05$ & $ 51.8 $ &  $ 0.8 $ & $ 777.0 $ & $ 13.9 $ \\ \hline
+				$8.85$  & $0.06$ & $ 51.8 $ &  $ 0.8 $ & $ 777.0 $ & $ 13.9 $ \\ \hline
+				$10.61$ & $0.07$ & $ 65.7 $ &  $ 0.9 $ & $ 985.5 $ & $ 16.4 $ \\ \hline
+				$11.83$ & $0.07$ & $ 65.7 $ &  $ 0.9 $ & $ 985.5 $ & $ 16.4 $ \\ \hline
+				$12.64$ & $0.08$ & $ 79.6 $ &  $ 1.1 $ & $ 1194.0 $ & $ 18.9 $ \\ \hline
+				$13.81$ & $0.08$ & $ 79.6 $ &  $ 1.1 $ & $ 1194.0 $ & $ 18.9 $ \\ \hline
+				$15.08$ & $0.09$ & $ 93.4$ &   $ 1.3 $ & $ 1401.0$ & $ 21.4 $ \\ \hline
+				$16.75$ & $0.1$  & $ 93.4 $ &  $ 1.3 $ & $ 1401.0 $ & $ 21.4 $ \\ \hline
+				$17.63$ & $0.1$  & $ 107.3 $ & $ 1.4 $ & $ 1609.5 $ & $ 23.9 $ \\ \hline
+				$18.75$ & $0.1$  & $ 107.3 $ & $ 1.4 $ & $ 1609.5 $ & $ 23.9 $ \\ \hline
+				$20.0$  & $0.2$  & $ 120.4 $ & $ 1.6 $ & $ 1806.0 $ & $ 26.2 $ \\ \hline
+				$21.3$  & $0.2$  & $ 120.5 $ & $ 1.6 $ & $ 1807.5 $ & $ 26.2 $ \\ \hline
+				$22.5$  & $0.2$  & $ 133.0 $ & $ 1.7 $ & $ 1995.0 $ & $ 28.5 $ \\ \hline
+				$23.7$  & $0.2$  & $ 133.1 $ & $ 1.7 $ & $ 1996.5 $ & $ 28.5 $ \\ \hline
+				$25.0$  & $0.2$  & $ 145.0 $ & $ 1.9 $ & $ 2175.0 $ & $ 30.7 $ \\ \hline
+				$26.4$  & $0.2$  & $ 145.2 $ & $ 1.9 $ & $ 2178.0 $ & $ 30.7 $ \\ \hline
  				
 				
 			\end{tabular}}\captionof{table}{Medición Consumo modo BAR}\label{tab:consumobar}
@@ -485,19 +512,38 @@
 				\includegraphics[scale=0.03]{images/pot.pdf}\caption{Potencia}\label{fig:potencia}
 			\end{figure}
 
-			Es observable como la potencia disipada por el circuito en modo BAR no sólo es mayor al de modo DOT punto a punto, sino también como la curva de crecimiento de la misma tiene a una forma exponencial. Esto tiene sentido ya que considerando la potencia como
+			Es observable como la potencia disipada por el circuito en modo BAR no sólo es mayor al de modo DOT punto a punto, sino también describe una progresión lineal lo cual es consistente con las hipótesis planteadas de que este crecimiento corresponde al encendido sucesivo de leds.
 
-			\begin{equation}
-				P = V * I
-			\end{equation}
-			donde $P$, $V$ e $I$ son la potencia, tensión y corriente respectivamente; de ser la corriente constante la potencia describirá una curva lineal tal cual indica la figura \ref{fig:potencia} para el modo DOT. En el caso del modo BAR, la corriente incrementa linealmente respecto de la tensión (ver figura \ref{fig:corriente}) pudiéndola expresar como $I = \alpha V$, siendo $\alpha$ una constante de proporción. Aplicando esto a la ecuación arriba descripta
+			\textbf{Efecto de Carga:} Utilizándose los multímetros en modo amperímetro, se considera su impedancia de entrada como mínima para evitar interacción con el circuito y por ello el efecto de carga despreciable.
 
-			\begin{equation}
-				P = V * I = V * \alpha V = \alpha V^2 
-			\end{equation}
-			lo que valida que la curva describa una trayectoria exponencial.
+		\subsection{Especificaciones}
+			\begin{center}
+			
+			{\footnotesize \begin{tabular}{ |l|l|l|l|c| }
 
-	\newpage
+			\hline
+			Especificación & Valor Esperado & Valor Mensurado & Corrimiento & Cumplido \\ \hline
+			Salida Estable Regulador & $12 \: V$ & $12.21 \: V$ & $0.21 \: V$ &  \cellcolor{green!100} SI \\ \hline
+			Entrada Minima para Estabilidad & $ 14.6 \: V$ & $13.13 \:V$ & $1.47 \:$ & \cellcolor{green!100} SI \\ \hline
+			Escala Led & $2.5 \:V$ & $2.5 \: V$ & $0 \:V$ &\cellcolor{yellow!100} SI \\ \hline
+			Corriente Led & $8.3 \: mA$ & $8.37 \: mA$ & $0.03 \: mA$ & \cellcolor{green!100} SI \\ \hline
+			Corriente Maxima sin leds prendidos (DOT/BAR) & $12.2 \: mA$ & $10.3 \: mA$ & $1.9 \: mA$ & \cellcolor{green!100} SI \\ \hline
+			Corriente Maxima (DOT) & $25.2 \: mA$ & $24.5 \: mA$ & $0.7 \: mA$ & \cellcolor{green!100} SI \\ \hline
+			Corriente Maxima (BAR) & $142.2 \: mA$ & $145.2 \: mA$ & $3 \: mA$ & \cellcolor{yellow!100} SI \\ \hline
+							
+				
+			\end{tabular}}\captionof{table}{Especificaciones}\label{tab:specs}
+			\end{center}
+
+		Los resultados resaltados en amarillo se consideran cumplidos habiendo notas adicionales a hacer en cada uno de ellos, verde se considera cumplido y rojo no cumplido. 
+		\begin{itemize}
+			\item \textbf{Entrada Minima para Estabilidad:} Si bien las mediciones arrojaron un valor menor al especificado, esto es coherente con la necesidad del fabricante de mantener un margen de seguridad para sus especificaciones como se ha visto en TPs anteriores.
+			\item \textbf{Escala Led:} Si bien en un principio no se cumplió la especificación, se realizaron las modificaciones necesarias.
+			\item \textbf{Corriente Máxima (BAR)}: Para el cálculo del valor esperado sólo se consideró el consumo del regulador de tensión, integrado y led, por lo que un leve corrimiento respecto de la medición es esperable. 
+		\end{itemize}
+
+	\newpage\null\thispagestyle{empty}\newpage
+	
 	\section{Escalabilidad}	\label{sec:escalabilidad}
 
 		Pensando en las aplicaciones prácticas de un voltímetro, nos encontramos con la necesidad de poder obtener una lectura exacta y/o a distancia. Un vúmetro si bien es de lectura sencilla, no nos da un valor númerico ni tampoco nos permite leer la lectura a distancia. Si pensamos esto a nivel industrial es una gran desventaja, quizá por cuestiones de la complejidad de un determinado proceso es preciso obtener una lectura exacta; asimismo las extensiones de las plantas industriales obligan a realizar mediciones mediante sensores que reporten a una base central, para consultarlas en un centro de control.
@@ -705,7 +751,7 @@
 			\end{itemize}
 
 
-	\newpage
+	\newpage\null\thispagestyle{empty}\newpage
 	\section{Conclusiones}
 
 	Se logró implementar el trabajo práctico deseado dentro de un tiempo prudente y se fue capaz de plantear y ejecutar una posibilidad de expansión del proyecto.
@@ -722,15 +768,16 @@
 
 	Luego utilizando los mismo conceptos aplicados al vúmetro, analizamos la exactitud del mismo; corroborando las hipótesis mediante las cuales justificamos la realización de esta extensión.
 
+	Tanto para el vúmetro como para la extensión se planteó una serie de especificaciones consideradas claves de los mismos y luego se fue capaz mediante las mediciones efectuadas corroborar las mismas, todas las especificaciones fueron satisfechas.
 
-	\newpage
+	\newpage\null\thispagestyle{empty}\newpage
 	\section{Referencias}
 		\label{sec:referencias}
 		\begin{itemize}
 		\item \textbf{Repositorio General} \url{https://github.com/aleperno/labotpfinal}
 		\item \textbf{Especificaciones multímetro digital MS8221A} \url{https://github.com/aleperno/labotpfinal/raw/master/MS8221%20series.pdf}
 		\item \textbf{Especificaciones multímetro digital Sonel CMM-40} \url{http://www.sonel.pl/sites/default/files/en/datasheet/datasheet_CMM-40_en_v1.pdf}
-		\item \textbf{Hoja de datos LM3915} \url{https://github.com/aleperno/labotpfinal/raw/master/lm3914.pdf}
+		\item \textbf{Hoja de datos LM3914} \url{https://github.com/aleperno/labotpfinal/raw/master/lm3914.pdf}
 		\item \textbf{Hoja de datos LM7812} \url{https://github.com/aleperno/labotpfinal/raw/master/lm7805c.pdf}
 		\item \textbf{Hoja de cálculos con Mediciones, Cálculos y Gráficos} \url{https://github.com/aleperno/labotpfinal/raw/master/tabla.ods}
 		\item \textbf{Especificaciones Raspberry Pi B+} \url{https://www.adafruit.com/datasheets/pi-specs.pdf}
@@ -742,5 +789,35 @@
 		\item \textbf{Código Fuente PHP} \url{https://github.com/aleperno/labotpfinal/blob/master/src/index.php}
 		\item \textbf{Código Fuente Grafico Python} \url{https://github.com/aleperno/labotpfinal/blob/master/src/graf.py}
 		\end{itemize}
+
+	\newpage\null\thispagestyle{empty}\newpage
+	\section{Anexo}\label{sec:anexo}
+		\subsection{Mulímetro Digital MS8221A}
+		\begin{figure}[H]
+			\centering
+				\includegraphics[scale=1.5]{attachments/dvm_specs.pdf}\caption{Especificaciones DVM}
+			\end{figure}
+
+		\begin{figure}[H]
+			\centering
+				\includegraphics[scale=1.5]{attachments/dvm_specs1.pdf}\caption{Especificaciones DVM}
+			\end{figure}
+
+		\subsection{LM3914}
+		\begin{figure}[H]
+			\centering
+				\includegraphics[scale=1]{attachments/lm3914_specs.pdf}\caption{Especificaciones LM3914}
+			\end{figure}
+
+		\subsection{LM7812}
+		\begin{figure}[H]
+			\centering
+				\includegraphics[scale=0.9]{attachments/lm7805c_specs.pdf}\caption{Especificaciones DVM}
+			\end{figure}
+
+		\begin{figure}[H]
+			\centering
+				\includegraphics[scale=0.9]{attachments/lm7805c_specs2.pdf}\caption{Especificaciones DVM}
+			\end{figure}
 
 \end{document}
